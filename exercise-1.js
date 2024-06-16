@@ -25,5 +25,25 @@ const students = [
     { name: "Eve", scores: [75, 80, 82] }
 ];
 function calculateGrades(students) {
-
+    const results = []; // store/push the results here later
+    students.forEach(student => {
+        const scores = student.scores;
+        const average = Math.floor(scores.reduce((acc, score) => acc + score, 0) / scores.length);
+        let grade = '';
+        if (average >= 90) {
+            grade = 'A';
+        } else if (average >= 80) {
+            grade = 'B';
+        } else if (average >= 70) {
+            grade = 'C';
+        } else if (average >= 60) {
+            grade = 'D';
+        } else {
+            grade = 'F';
+        }
+        results.push({ name: student.name, scores: average, grade: grade });
+    });
+    return results;
 }
+const grades = calculateGrades(students);
+console.log(grades);
